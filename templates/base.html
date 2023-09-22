@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+
+    {% if is_desktop %}
+    <link rel="stylesheet" href="/static/css/mobile.min.css">
+    <link rel="stylesheet" href="/static/css/pc.min.css">
+    {% else %}
+    <link rel="stylesheet" href="/static/css/mobile.min.css">
+    {% endif %}
+
+    <link rel="icon" href="/static/img/favicon.svg" type="image/x-icon">
+</head>
+<body>
+<header class="header">
+    <div class="header__wrapper">
+        <a class="header__link" href="/">
+            <img src="/static/img/logo.png" alt="Логотип">
+        </a>
+        {% block header %}
+        {% endblock %}
+    </div>
+</header>
+<main>
+
+    {% if is_desktop %}
+    {% block main_pc %}
+
+    {% endblock %}
+    {% else %}
+    {% block main_mobile %}
+    <div class="photo__wrapper">
+        <video id="video"></video>
+        <button onclick="ask_ai()" class="photo__button" type="button">
+            <img src="/static/img/photo_btn.png" alt="снять">
+        </button>
+    </div>
+    <p class="find_text">Название детали: <span id="type_name">не обнаружена</span></p>
+
+    <script src="/static/js/photo.js"></script>
+
+
+    {% endblock %}
+    {% endif %}
+</main>
+<footer>
+    <p>powered by team <i>noname</i></p>
+</footer>
+</body>
+</html>

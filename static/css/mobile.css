@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.header {
+  width: 100%;
+  padding: 10px 0;
+}
+.header__wrapper {
+  padding: 0 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  min-height: calc(100vh - 88px);
+}
+
+footer {
+  padding: 20px 0;
+  background: #000;
+}
+footer p {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+
+.photo__wrapper {
+  aspect-ratio: 1/1;
+  width: 100%;
+  position: relative;
+}
+.photo__wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo__button {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 32px);
+  border: none;
+  outline: none;
+  background: transparent;
+  transition: opacity 0.05s ease;
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+}
+.photo__button img {
+  width: 100%;
+  height: 100%;
+}
+.photo__button:active {
+  opacity: 75%;
+}
+
+.find_text {
+  padding: 10px 0;
+  text-align: center;
+  color: #707070;
+  font-size: 16px;
+  font-weight: bold;
+}
+.find_text span {
+  color: #000;
+}
+
+/*# sourceMappingURL=mobile.css.map */
