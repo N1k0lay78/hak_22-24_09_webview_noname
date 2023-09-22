@@ -8,7 +8,9 @@ var facingMode = "user"; // Can be 'user' or 'environment' to access back or fro
 var constraints = {
     audio: false,
     video: {
-        facingMode: facingMode
+        facingMode: facingMode,
+        width: 1280,
+        height: 640
     }
 };
 
@@ -23,6 +25,10 @@ function ask_ai() {
     var video = document.getElementById("video")
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
+
+    console.log(video.videoWidth, video.videoHeight)
+    console.log(video.clientWidth, video.clientHeight)
+
     canvas
         .getContext("2d")
         .drawImage(video, 0, 0, video.videoWidth, video.videoHeight)

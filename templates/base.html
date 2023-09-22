@@ -6,7 +6,6 @@
     <title>{{title}}</title>
 
     {% if is_desktop %}
-    <link rel="stylesheet" href="/static/css/mobile.min.css">
     <link rel="stylesheet" href="/static/css/pc.min.css">
     {% else %}
     <link rel="stylesheet" href="/static/css/mobile.min.css">
@@ -28,7 +27,18 @@
 
     {% if is_desktop %}
     {% block main_pc %}
-
+    <div class="photo">
+        <div class="photo__wrapper">
+            <div id="drop-image" class="photo__drop-box" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+                <img src="/static/img/img_icon.png" alt="изображение">
+                <p>Загрузите изображения для обработки или перетащите их сюда</p>
+                <input type="file">
+            </div>
+        </div>
+    </div>
+    <div id="img" class="checked">
+    </div>
+    <script src="/static/js/dropbox.js"></script>
     {% endblock %}
     {% else %}
     {% block main_mobile %}
@@ -41,8 +51,6 @@
     <p class="find_text">Название детали: <span id="type_name">не обнаружена</span></p>
 
     <script src="/static/js/photo.js"></script>
-
-
     {% endblock %}
     {% endif %}
 </main>

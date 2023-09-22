@@ -36,4 +36,58 @@ footer p {
   font-size: 16px;
 }
 
+.photo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.photo__wrapper {
+  display: flex;
+  margin: 80px 0;
+}
+.photo__drop-box {
+  border: 5px dashed black;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 40px;
+}
+.photo__drop-box img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+.photo__drop-box p {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.photo__drop-box input {
+  font-size: 21px;
+}
+
+.checked {
+  margin: 0 40px 80px 40px;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.checked__block {
+  width: 100%;
+}
+.checked__block img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: cover;
+}
+.checked__block p {
+  width: 100%;
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=pc.css.map */
