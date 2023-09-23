@@ -106,13 +106,5 @@ def check_img():
     return jsonify(type=a, img=encoded_img)
 
 
-@application.route("/test", methods=["POST", "GET"])
-def test():
-    print(request.form, 123)
-    print(request.data, 321)
-    print(request.files['file'].save("tmp.jpeg"), 221)
-    return jsonify(type="RC101.01.01")
-
-
 if __name__ == '__main__':
     application.run(host="localhost", port=8000)  # "192.168.43.33"
