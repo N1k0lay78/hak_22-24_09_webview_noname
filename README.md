@@ -22,4 +22,8 @@
 
 Стек технологии: Python, JS, Yolo8, matplotlib, torchvision, numpy, pandas, docker, и flask
 
+работа программы: 
+ - Устанавливаем модули // pip install requirements.txt
+ - Запускаем run.py
+
 
