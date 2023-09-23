@@ -11,7 +11,7 @@
   }
   &__drop-box {
     border: $size1 dashed black;
-    padding: $size4 $size4;
+    padding: $size4;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,8 +22,9 @@
       height: 120px;
       margin-bottom: $size3;
     }
-    & p {
+    & p, & a {
       font-size: 24px;
+      width: 100%;
       text-align: center;
       margin-bottom: $size3;
     }

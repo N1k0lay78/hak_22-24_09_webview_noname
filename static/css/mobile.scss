@@ -47,3 +47,13 @@
     color: #000;
   }
 }
+
+#info {
+  display: flex;
+  justify-content: center;
+  margin-top: $size3;
+}
+
+.open_pdf {
+  font-size: 21px;
+}

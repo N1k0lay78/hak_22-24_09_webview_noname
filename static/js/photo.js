@@ -1,3 +1,4 @@
+// выводим изображение с камеры
 var video = document.getElementById("video");
 video.setAttribute('playsinline', '');
 video.setAttribute('autoplay', '');
@@ -20,28 +21,36 @@ navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
 });
 
 function ask_ai() {
-    console.log("START", window.isSecureContext)
+    // получаем видеопоток и отрисовываем его на холсте
     var canvas = document.createElement("canvas")
     var video = document.getElementById("video")
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
-    console.log(video.videoWidth, video.videoHeight)
-    console.log(video.clientWidth, video.clientHeight)
-
     canvas
         .getContext("2d")
         .drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
+
+    // сохраняем изображение с холста, как изображение
     var data = new FormData()
     data.append('file', canvas.toDataURL("image/png"))
 
-    console.log("ADD PHOTO")
-
+    // создаём запрос для API
     fetch('/check_img', {
         method: 'POST',
         body: data
     }).then((response) => response.json())
         .then((data) => {
+            // изменяем отображение относительно полученного ответа
             document.getElementById("type_name").innerText = data.type
+            // если может быть допущена ошибка добавляем ссылку на PDF для проверки
+            if (!data.successful_determination) {
+                let a = document.createElement("a")
+                a.classList.add("open_pdf")
+                a.href = "/blueprint/" + data.link
+                a.innerText = "открыть чертёж изделия →"
+                document.getElementById("info").append(a)
+            } else {
+                document.getElementById("info").innerHTML = ""
+            }
         })
 }

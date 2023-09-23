@@ -19,29 +19,23 @@
         <a class="header__link" href="/">
             <img src="/static/img/logo.png" alt="Логотип">
         </a>
-        {% block header %}
-        {% endblock %}
     </div>
 </header>
 <main>
-
     {% if is_desktop %}
-    {% block main_pc %}
     <div class="photo">
         <div class="photo__wrapper">
-            <div id="drop-image" class="photo__drop-box" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+            <div id="drop-image" class="photo__drop-box" ondrop="drop_handler(event)"
+                 ondragover="dragover_handler(event)">
                 <img src="/static/img/img_icon.png" alt="изображение">
-                <p>Загрузите изображения для обработки или перетащите их сюда</p>
-                <input type="file">
+                <p>Перетащите изображения для обработки сюда</p>
             </div>
         </div>
     </div>
     <div id="img" class="checked">
     </div>
     <script src="/static/js/dropbox.js"></script>
-    {% endblock %}
     {% else %}
-    {% block main_mobile %}
     <div class="photo__wrapper">
         <video id="video"></video>
         <button onclick="ask_ai()" class="photo__button" type="button">
@@ -50,8 +44,11 @@
     </div>
     <p class="find_text">Название детали: <span id="type_name">не обнаружено</span></p>
 
+    <div id="info">
+
+    </div>
+
     <script src="/static/js/photo.js"></script>
-    {% endblock %}
     {% endif %}
 </main>
 <footer>

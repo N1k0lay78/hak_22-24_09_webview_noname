@@ -77,4 +77,14 @@ footer p {
   color: #000;
 }
 
+#info {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.open_pdf {
+  font-size: 21px;
+}
+
 /*# sourceMappingURL=mobile.css.map */
