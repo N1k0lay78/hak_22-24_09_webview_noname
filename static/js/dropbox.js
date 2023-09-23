@@ -16,6 +16,9 @@ function drop_handler(ev) {
     for (let i = 0; i < dt.files.length; i++) {
         // запрос на классификацию детали
         const a = (file) => {
+            // включаем анимацию загрузки
+            updateAnimation(1)
+
             // создаём форму запроса
             let formData = new FormData()
             formData.append('file', file)
@@ -26,6 +29,9 @@ function drop_handler(ev) {
                 body: formData
             }).then((response) => response.json())
                 .then((data) => {
+                    // выключаем анимацию
+                    updateAnimation(-1)
+
                     // добавляем классифицированное отображение
                     // создаём <div> и добавляем в него <img> и <p>
                     let div = document.createElement("div")
@@ -49,7 +55,7 @@ function drop_handler(ev) {
                     images.append(div)
                 })
         }
-        // запрос в API раз в 7 секунд
-        setTimeout(a, 7000*i, dt.files[i]);
+        // запрос в API раз в 8 секунд
+        setTimeout(a, 8000 * i, dt.files[i]);
     }
 }

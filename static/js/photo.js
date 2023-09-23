@@ -35,6 +35,9 @@ function updateTypes() {
 }
 
 function ask_ai() {
+    // включаем анимацию загрузки
+    updateAnimation(1)
+
     // получаем видеопоток и отрисовываем его на холсте
     let canvas = document.createElement("canvas")
     let video = document.getElementById("video")
@@ -54,6 +57,9 @@ function ask_ai() {
         body: data
     }).then((response) => response.json())
         .then((data) => {
+            // выключаем анимацию
+            updateAnimation(-1)
+
             // изменяем отображение относительно полученного ответа
             document.getElementById("type_name").innerText = data.type
 

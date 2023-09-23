@@ -22,12 +22,22 @@ body {
 .header {
   width: 100%;
   padding: 10px 0;
+
   &__wrapper {
     padding: 0 10px;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+
+  &__loading {
+    height: 64px;
+    display: none;
+  }
+}
+
+.show {
+  display: block !important;
 }
 
 main {
@@ -37,6 +47,7 @@ main {
 footer {
   padding: $size3 0;
   background: #000;
+
   & p {
     color: #fff;
     text-align: center;

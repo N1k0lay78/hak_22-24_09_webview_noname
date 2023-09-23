@@ -21,6 +21,14 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.header__loading {
+  height: 64px;
+  display: none;
+}
+
+.show {
+  display: block !important;
+}
 
 main {
   min-height: calc(100vh - 88px);
