@@ -77,6 +77,19 @@ footer p {
   color: #000;
 }
 
+#find {
+  margin: 40px 10px;
+}
+#find p {
+  color: #707070;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+#find p span {
+  color: #000;
+}
+
 #info {
   display: flex;
   justify-content: center;

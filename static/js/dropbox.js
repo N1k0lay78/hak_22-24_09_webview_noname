@@ -17,7 +17,7 @@ function drop_handler(ev) {
         // запрос на классификацию детали
         const a = (file) => {
             // создаём форму запроса
-            var formData = new FormData()
+            let formData = new FormData()
             formData.append('file', file)
 
             // создаём запрос для API

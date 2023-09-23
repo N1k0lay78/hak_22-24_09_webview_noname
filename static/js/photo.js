@@ -1,12 +1,13 @@
 // выводим изображение с камеры
-var video = document.getElementById("video");
+let types = {}
+let video = document.getElementById("video");
 video.setAttribute('playsinline', '');
 video.setAttribute('autoplay', '');
 video.setAttribute('muted', '');
 
 /* Setting up the constraint */
-var facingMode = "user"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
-var constraints = {
+let facingMode = "user"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
+let constraints = {
     audio: false,
     video: {
         facingMode: facingMode,
@@ -20,10 +21,23 @@ navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
     video.srcObject = stream;
 });
 
+function updateTypes() {
+    let find = document.getElementById("find")
+    find.innerHTML = ""
+    for (const name in types) {
+        let el = document.createElement("p")
+        el.innerText = `${name}: `
+        let span = document.createElement("span")
+        span.innerText = `${types[name]} шт.`
+        el.append(span)
+        find.append(el)
+    }
+}
+
 function ask_ai() {
     // получаем видеопоток и отрисовываем его на холсте
-    var canvas = document.createElement("canvas")
-    var video = document.getElementById("video")
+    let canvas = document.createElement("canvas")
+    let video = document.getElementById("video")
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas
@@ -31,7 +45,7 @@ function ask_ai() {
         .drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
 
     // сохраняем изображение с холста, как изображение
-    var data = new FormData()
+    let data = new FormData()
     data.append('file', canvas.toDataURL("image/png"))
 
     // создаём запрос для API
@@ -42,15 +56,23 @@ function ask_ai() {
         .then((data) => {
             // изменяем отображение относительно полученного ответа
             document.getElementById("type_name").innerText = data.type
+
+            // обновляем данные об количестве найденных изделий одного типа
+            if (data.type in types) {
+                types[data.type]++
+            } else {
+                types[data.type] = 1
+            }
+            updateTypes()
+
             // если может быть допущена ошибка добавляем ссылку на PDF для проверки
+            document.getElementById("info").innerHTML = ""
             if (!data.successful_determination) {
                 let a = document.createElement("a")
                 a.classList.add("open_pdf")
                 a.href = "/blueprint/" + data.link
                 a.innerText = "открыть чертёж изделия →"
                 document.getElementById("info").append(a)
-            } else {
-                document.getElementById("info").innerHTML = ""
             }
         })
 }
