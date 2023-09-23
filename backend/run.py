@@ -26,7 +26,7 @@ def answer(weight_path: str, img_path: str) -> (str, str):
     # если не получилось распознать возвращаем successful_determination=False
 
     # загрузка изображения
-    img = Image.open(img_path)
+    img = Image.open(img_path).convert('RGB')
     img_array = np.array(img)
 
     # сжатие и перевод в чб
@@ -64,24 +64,33 @@ def answer(weight_path: str, img_path: str) -> (str, str):
 def check_img():
     # получение файла из запроса и сохранение его
     if "file" in request.form:
-        # TODO:
-        # починить работу с PNG изображениями
-        # urllib.request.urlretrieve(request.form["file"], "tmp.png")
+        urllib.request.urlretrieve(request.form["file"], "tmp.png")
         pass
     else:
         request.files['file'].save("tmp.png")
 
     # сюда магию проверки картинки
-    a, link = answer("model\\model_1.pt", "tmp.png")
+    a, link = answer("./model/model_1.pt", "tmp.png")
 
     # для пк ответ содержит изображение, для телефона не нужно
     if request.headers.get('User-Agent').split()[1][1:-1].split()[0] == "Window":
 
-        if True:  # Сжатие изображения ДЕЛАЕТ ЕГО СИНИМ
+        if True: # Сжатие изображения 
             img = Image.open("tmp.png")
             img_array = np.array(img)
-            resized_image = cv2.resize(img_array, (640, 640))
-            cv2.imwrite(f'tmp.png', resized_image)
+            
+            scale_percent = 60 # percent of original size
+            width = int(img_array.shape[1] * scale_percent / 100)
+            height = int(img_array.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            print(f"{width=}, height{height=}, {dim=}")
+            
+            resized_image = cv2.resize(
+                img_array, 
+                dim, 
+                interpolation = cv2.INTER_AREA
+            )
+            cv2.imwrite('tmp.png', cv2.cvtColor(resized_image, cv2.COLOR_RGB2BGR))
 
         # загрузка изображения
         pil_img = Image.open('tmp.png', mode='r')  # reads the PIL image
@@ -102,4 +111,4 @@ def get_pdf(filename):
 
 
 if __name__ == '__main__':
-    application.run(host="localhost", port=8000)
+    application.run(host="0.0.0.0", port=5000)
